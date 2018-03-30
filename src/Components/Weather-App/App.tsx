@@ -41,7 +41,7 @@ export interface Forecast5Days {
 }
 
 export class WeatherApp extends React.Component {
-  data: Forecast5Days;
+  data: Forecast5Days | undefined = undefined;
 
   componentDidMount() {
     fetch('https://api.openweathermap.org/data/2.5/forecast?q=kolkata&appid=d65cee3c5866168080fa1c4177fdb4a8')
@@ -53,6 +53,10 @@ export class WeatherApp extends React.Component {
       });
   }
 
+  isDataLoaded():this.data is Forecast5Days {
+
+  }
+
   render() {
     return (
       <div className="App">
@@ -60,9 +64,8 @@ export class WeatherApp extends React.Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
+
+        {this.data!==undefined ? }
       </div>
     );
   }
