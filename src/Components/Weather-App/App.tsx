@@ -40,8 +40,17 @@ export interface Forecast5Days {
   list: Array<ForecaseAtInstance>;
 }
 
-export class WeatherApp extends React.Component {
-  data: Forecast5Days | undefined = undefined;
+export interface WeatherDataState {
+  data: Forecast5Days | undefined;
+}
+
+export class WeatherApp extends React.Component<{}, WeatherDataState> {
+
+  constructor(props: {}) {
+    super(props);
+
+    this.state = { data: undefined };
+  }
 
   componentDidMount() {
     fetch('https://api.openweathermap.org/data/2.5/forecast?q=kolkata&appid=d65cee3c5866168080fa1c4177fdb4a8')
@@ -49,12 +58,8 @@ export class WeatherApp extends React.Component {
         return response.json();
       })
       .then((responseObject) => {
-        this.data = responseObject as Forecast5Days;
+        this.setState({ data: responseObject as Forecast5Days });
       });
-  }
-
-  isDataLoaded():this.data is Forecast5Days {
-
   }
 
   render() {
@@ -65,7 +70,7 @@ export class WeatherApp extends React.Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
 
-        {this.data!==undefined ? }
+        {this.state.data !== undefined ? JSON.stringify(this.state.data) : 'Data Loading...'}
       </div>
     );
   }
