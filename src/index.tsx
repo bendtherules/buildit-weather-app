@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { WeatherApp } from './Components/Weather-App';
+import { WeatherApp } from './Components/WeatherApp';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 

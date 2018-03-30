@@ -62,6 +62,14 @@ export class WeatherApp extends React.Component<{}, WeatherDataState> {
       });
   }
 
+  renderLoading(): JSX.Element | string {
+    return 'Still Loading';
+  }
+
+  renderDates(): JSX.Element | string {
+    return  'Loading complete';
+  }
+
   render() {
     return (
       <div className="App">
@@ -70,7 +78,7 @@ export class WeatherApp extends React.Component<{}, WeatherDataState> {
           <h1 className="App-title">Welcome to React</h1>
         </header>
 
-        {this.state.data !== undefined ? JSON.stringify(this.state.data) : 'Data Loading...'}
+        {this.state.data !== undefined ? this.renderDates() : this.renderLoading()}
       </div>
     );
   }
