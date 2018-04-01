@@ -1,0 +1,21 @@
+.WeatherApp {
+  text-align: center;
+}
+
+.WeatherApp-header {
+  background-color: #222;
+  color: white;
+
+  width: 100%;
+  height: 10vh;
+}
+
+.WeatherApp-title {
+  padding: 3.5vh 0;
+  font-size: 3vh;
+}
+
+.WeatherApp-body {
+  width: 100%;
+  height: 90vh;
+}
