@@ -40,7 +40,7 @@ export class WeatherApp extends React.Component<{}, WeatherDataState> {
       <div className="WeatherApp">
         <header className="WeatherApp-header">
           <div className="WeatherApp-title">
-            Weather Forecast
+            Weather Forecast at Kolkata, India
           </div>
         </header>
         <div className="WeatherApp-body">
