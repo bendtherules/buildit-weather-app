@@ -1,0 +1,1 @@
+export { SingleDayForecast } from './Component';

@@ -1,0 +1,23 @@
+.SingleInstanceForecast {
+  position: relative;
+
+  margin: 1em 0;
+  padding-bottom: 0.25em;
+
+  font-size: 0.75em;
+}
+
+
+.SingleInstanceForecast .weather-icon-container {
+  padding: .25em 0;
+}
+
+.SingleInstanceForecast .bottom-dividor{
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 1em;
+  height: 2px;
+  background-color: black;
+  transform: translateX(-50%);
+}
