@@ -1,42 +1,43 @@
 import * as React from 'react';
+// import * as moment from 'moment';
+import '../../../node_modules/open-weather-icons/dist/css/open-weather-icons.css';
 import './App.css';
-
-const logo = require('./logo.svg');
+import { MultiDayForecast } from '../MultiDayForecast';
 
 export interface ForecaseAtInstance {
-  dt: Number;
+  dt: number;
   main: {
-    temp: Number;
-    temp_min: Number;
-    temp_max: Number;
-    pressure: Number;
-    sea_level: Number;
-    grnd_level: Number;
-    humidity: Number;
-    temp_kf: Number;
+    temp: number;
+    temp_min: number;
+    temp_max: number;
+    pressure: number;
+    sea_level: number;
+    grnd_level: number;
+    humidity: number;
+    temp_kf: number;
   };
 
   weather: [{
-    id: Number;
+    id: number;
     main: string; // Make enum
     description: string;
     icon: string;
   }];
 
   clouds: {
-    all: Number;
+    all: number;
   };
 
   wind: {
-    speed: Number;
-    deg: Number;
+    speed: number;
+    deg: number;
   };
 
   dt_txt: string;
 }
 
 export interface Forecast5Days {
-  cnt: Number;
+  cnt: number;
   list: Array<ForecaseAtInstance>;
 }
 
@@ -66,19 +67,21 @@ export class WeatherApp extends React.Component<{}, WeatherDataState> {
     return 'Still Loading';
   }
 
-  renderDates(): JSX.Element | string {
-    return  'Loading complete';
+  renderDates(forecast5Days: Forecast5Days): JSX.Element | string {
+    return <MultiDayForecast forecast5Days={forecast5Days} />;
   }
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+      <div className="WeatherApp">
+        <header className="WeatherApp-header">
+          <div className="WeatherApp-title">
+            Weather Forecast
+          </div>
         </header>
-
-        {this.state.data !== undefined ? this.renderDates() : this.renderLoading()}
+        <div className="WeatherApp-body">
+          {this.state.data !== undefined ? this.renderDates(this.state.data) : this.renderLoading()}
+        </div>
       </div>
     );
   }
