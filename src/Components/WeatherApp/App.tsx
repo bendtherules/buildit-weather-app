@@ -1,6 +1,5 @@
 import * as React from 'react';
 // import * as moment from 'moment';
-import '../../../node_modules/open-weather-icons/dist/css/open-weather-icons.css';
 import './App.css';
 import { Forecast5DaysMixed } from '../../Utils';
 import { MultiDayForecast } from '../MultiDayForecast';
@@ -18,7 +17,8 @@ export class WeatherApp extends React.Component<{}, WeatherDataState> {
   }
 
   componentDidMount() {
-    fetch('https://api.openweathermap.org/data/2.5/forecast?q=kolkata&appid=d65cee3c5866168080fa1c4177fdb4a8')
+    // tslint:disable-next-line:max-line-length
+    fetch('https://api.openweathermap.org/data/2.5/forecast?q=kolkata&units=metric&appid=d65cee3c5866168080fa1c4177fdb4a8')
       .then((response) => {
         return response.json();
       })

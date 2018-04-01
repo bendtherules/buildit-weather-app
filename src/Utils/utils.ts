@@ -20,6 +20,22 @@ export class Utils {
         // tslint:disable-next-line:triple-equals
         return (moment1.clone().startOf('day').format() == moment2.clone().startOf('day').format());
     }
+
+    static numberToMaxFixed(originalNumber: number, maxAfterDecimal: number = 2): number {
+        return parseFloat(originalNumber.toFixed(maxAfterDecimal));
+    }
+
+    static stringToNormalCase(originalString: string): string {
+        if (originalString.length > 0) {
+            const firstChar = originalString[0];
+
+            const firstCharUpper = firstChar.toUpperCase();
+            const restString = originalString.slice(1, originalString.length);
+            return [firstCharUpper, restString].join('');
+        } else {
+            return originalString;
+        }
+    }
 }
 
 export interface ForecaseAtInstance {
