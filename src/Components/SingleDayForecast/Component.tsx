@@ -2,6 +2,7 @@ import * as React from 'react';
 import './Component.css';
 import '../../../node_modules/open-weather-icons/dist/css/open-weather-icons.css';
 import { Forecast5DaysSeperated, ForecaseAtInstance, Utils } from '../../Utils';
+import { SingleInstanceForecast } from '../SingleInstanceForecast/Component';
 
 export interface SingleDayForecastProps {
   forecastCurrentDay: Array<ForecaseAtInstance>;
@@ -94,42 +95,46 @@ export class SingleDayForecast extends React.Component<SingleDayForecastProps, {
     return (
       <div className="SingleDayForecast">
         <div className="SingleDayForecast-inner">
-          <div className="forecast-summary">
+          <div className="summary">
 
-            <div className="summary-weather-icon-container">
-              <div className={`summary-weather-icon owi owi-3x owi-${summary.modeWeatherIcon}`} />
+            <div className="weather-icon-container">
+              <div className={`weather-icon owi owi-3x owi-${summary.modeWeatherIcon}`} />
             </div>
 
-            <div className="summary-date">
+            <div className="date">
               {day.format('Do MMM')}
             </div>
 
-            <div className="summary-weather-description">
+            <div className="weather-description">
               {Utils.stringToNormalCase(summary.modeWeatherDescription)}
             </div>
 
-            <div className="summary-temp" title={`Temperature : ${summary.avgTemp.toFixed(0)}°C`}>
-              <div className="temp-desc">
+            <div className="temp" title={`Temperature : ${summary.avgTemp.toFixed(0)}°C`}>
+              <div className="desc">
                 T :
               </div>
-              <div className="temp-value">
+              <div className="value">
                 {summary.avgTemp.toFixed(0)}&deg;C
               </div>
               <div className="clearfix"/>
             </div>
 
-            <div className="summary-humidity" title={`Humidity : ${summary.avgHumidity.toFixed(0)} %`}>
-              <div className="humidity-desc">
+            <div className="humidity" title={`Humidity : ${summary.avgHumidity.toFixed(0)} %`}>
+              <div className="desc">
                 H :
               </div>
-              <div className="humidity-value">
+              <div className="value">
                 {summary.avgHumidity.toFixed(0)} %
               </div>
               <div className="clearfix"/>
             </div>
+
+            <div className="bottom-dividor" />
           </div>
-          <div className="forecast-details">
-            BLANK
+          <div className="details">
+            {this.props.forecastCurrentDay.map((forecastAtInstance) => {
+              return <SingleInstanceForecast forecastAtInstance={forecastAtInstance} key={forecastAtInstance.dt} />;
+            })}
         </div>
         </div>
       </div>
