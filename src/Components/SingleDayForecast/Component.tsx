@@ -12,13 +12,15 @@ export interface SingleDayForecastProps {
 
 type numberOrString = number | string;
 
-export class SingleDayForecast extends React.Component<SingleDayForecastProps, { maximized: boolean }> {
+export class SingleDayForecast extends React.Component<SingleDayForecastProps,
+  { maximized: boolean, maximizedInitial: boolean }
+  > {
 
   constructor(props: SingleDayForecastProps) {
     super(props);
 
     this.props = props;
-    this.state = { maximized: true };
+    this.state = { maximized: true, maximizedInitial: true };
 
     this.minimizeIfAlreadyMaximized = this.minimizeIfAlreadyMaximized.bind(this);
     this.maximizeIfAlreadyMinimized = this.maximizeIfAlreadyMinimized.bind(this);
@@ -94,7 +96,7 @@ export class SingleDayForecast extends React.Component<SingleDayForecastProps, {
   }
 
   changeMaximize() {
-    this.setState((prevState) => { return { maximized: !prevState.maximized }; });
+    this.setState((prevState) => { return { maximized: !prevState.maximized, maximizedInitial: false }; });
   }
 
   maximizeIfAlreadyMinimized() {
@@ -109,20 +111,26 @@ export class SingleDayForecast extends React.Component<SingleDayForecastProps, {
     }
   }
 
+  calcMainTagClassnames(): string {
+    const MainTagName = 'SingleDayForecast';
+    const allClassNames = [MainTagName];
+
+    if (this.state.maximized) {
+      allClassNames.push('maximized');
+    }
+    if (this.state.maximizedInitial) {
+      allClassNames.push('maximized-initial');
+    }
+
+    return classnames(allClassNames);
+  }
+
   render() {
     const day = Utils.createDateFromEpochInIndiaTZ(this.props.forecastCurrentDay[0].dt);
     const summary = this.calcSummary();
 
-    const TagNameSingleDay = 'SingleDayForecast';
-
     return (
-      <div
-        className={
-          this.state.maximized ?
-            classnames([TagNameSingleDay, 'maximize']) :
-            classnames([TagNameSingleDay])
-        }
-      >
+      <div className={this.calcMainTagClassnames()}>
         <div className="SingleDayForecast-inner" onClick={this.minimizeIfAlreadyMaximized}>
           <div className="summary" onClick={this.maximizeIfAlreadyMinimized}>
 
