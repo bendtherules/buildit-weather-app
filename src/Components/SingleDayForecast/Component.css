@@ -2,13 +2,15 @@
   float: left;
   width: 20%;
   height: 100%;
-
+  
   padding: 0 .5em;
-
+  
   font-size: 1.25em;
 }
 
 .SingleDayForecast .SingleDayForecast-inner {
+  position: relative;
+
   width: 100%;
   height: 100%;
   
@@ -16,13 +18,24 @@
 }
 
 .SingleDayForecast .summary {
-  position: relative;
+  position: absolute;
 
   padding: 0 0.5em;
   padding-bottom: .5em;
 
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 40%;
+
+  transition: 1s all;
 }
+
+.SingleDayForecast.maximize .summary {
+  top: 45%;
+  transform: translate(0, -50%);
+}
+
 
 .SingleDayForecast .summary>* {
   padding: 0.125em 0;
@@ -80,9 +93,29 @@
   
   background-color: #000;
   transform: translateX(-50%);
+
+  transition: opacity 1s;
+}
+
+.SingleDayForecast.maximize  .summary .bottom-dividor{
+  opacity: 0;
 }
 
 .SingleDayForecast .details {
+  position: absolute;
+
+  top: 40%;
+  left: 0;
+  width: 100%;
   height: 60%;
+
   overflow: auto;
+
+  transition: visibility 0s 1s;
+}
+
+.SingleDayForecast.maximize .details {
+  visibility: hidden;
+
+  transition: visibility 0s 0s;
 }

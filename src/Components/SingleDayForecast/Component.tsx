@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as classnames from 'classnames';
 import './Component.css';
 import '../../../node_modules/open-weather-icons/dist/css/open-weather-icons.css';
 import { Forecast5DaysSeperated, ForecaseAtInstance, Utils } from '../../Utils';
@@ -11,12 +12,16 @@ export interface SingleDayForecastProps {
 
 type numberOrString = number | string;
 
-export class SingleDayForecast extends React.Component<SingleDayForecastProps, {}> {
+export class SingleDayForecast extends React.Component<SingleDayForecastProps, { maximized: boolean }> {
 
   constructor(props: SingleDayForecastProps) {
     super(props);
 
     this.props = props;
+    this.state = { maximized: true };
+
+    this.minimizeIfAlreadyMaximized = this.minimizeIfAlreadyMaximized.bind(this);
+    this.maximizeIfAlreadyMinimized = this.maximizeIfAlreadyMinimized.bind(this);
 
     // this.state = { data: undefined };
   }
@@ -88,14 +93,38 @@ export class SingleDayForecast extends React.Component<SingleDayForecastProps, {
     return maxEl;
   }
 
+  changeMaximize() {
+    this.setState((prevState) => { return { maximized: !prevState.maximized }; });
+  }
+
+  maximizeIfAlreadyMinimized() {
+    if (!this.state.maximized) {
+      this.changeMaximize();
+    }
+  }
+
+  minimizeIfAlreadyMaximized() {
+    if (this.state.maximized) {
+      this.changeMaximize();
+    }
+  }
+
   render() {
     const day = Utils.createDateFromEpochInIndiaTZ(this.props.forecastCurrentDay[0].dt);
     const summary = this.calcSummary();
 
+    const TagNameSingleDay = 'SingleDayForecast';
+
     return (
-      <div className="SingleDayForecast">
-        <div className="SingleDayForecast-inner">
-          <div className="summary">
+      <div
+        className={
+          this.state.maximized ?
+            classnames([TagNameSingleDay, 'maximize']) :
+            classnames([TagNameSingleDay])
+        }
+      >
+        <div className="SingleDayForecast-inner" onClick={this.minimizeIfAlreadyMaximized}>
+          <div className="summary" onClick={this.maximizeIfAlreadyMinimized}>
 
             <div className="weather-icon-container">
               <div className={`weather-icon owi owi-3x owi-${summary.modeWeatherIcon}`} />
@@ -116,7 +145,7 @@ export class SingleDayForecast extends React.Component<SingleDayForecastProps, {
               <div className="value">
                 {summary.avgTemp.toFixed(0)}&deg;C
               </div>
-              <div className="clearfix"/>
+              <div className="clearfix" />
             </div>
 
             <div className="humidity" title={`Humidity : ${summary.avgHumidity.toFixed(0)} %`}>
@@ -126,7 +155,7 @@ export class SingleDayForecast extends React.Component<SingleDayForecastProps, {
               <div className="value">
                 {summary.avgHumidity.toFixed(0)} %
               </div>
-              <div className="clearfix"/>
+              <div className="clearfix" />
             </div>
 
             <div className="bottom-dividor" />
@@ -135,7 +164,7 @@ export class SingleDayForecast extends React.Component<SingleDayForecastProps, {
             {this.props.forecastCurrentDay.map((forecastAtInstance) => {
               return <SingleInstanceForecast forecastAtInstance={forecastAtInstance} key={forecastAtInstance.dt} />;
             })}
-        </div>
+          </div>
         </div>
       </div>
     );
