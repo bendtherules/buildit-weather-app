@@ -1,21 +1,66 @@
-.WeatherApp {
-  text-align: center;
+.SingleDayForecast {
+  float: left;
+  width: 20%;
+  height: 100%;
+
+  padding: 0 .5em;
+
+  font-size: 1.25em;
 }
 
-.WeatherApp-header {
-  background-color: #222;
-  color: white;
-
+.SingleDayForecast .SingleDayForecast-inner {
   width: 100%;
-  height: 10vh;
+  height: 100%;
+  
+  padding: 0 0.5em;
+  
+  border: 2px solid gray;
 }
 
-.WeatherApp-title {
-  padding: 3.5vh 0;
-  font-size: 3vh;
+.SingleDayForecast .forecast-summary {
+  padding-bottom: .5em;
+  border-bottom: 2px solid #000;
 }
 
-.WeatherApp-body {
-  width: 100%;
-  height: 90vh;
+.SingleDayForecast .forecast-summary>* {
+  padding: 0.125em 0;
+}
+
+.SingleDayForecast .summary-weather-description {
+  padding-bottom: .25em;
+}
+
+.SingleDayForecast .summary-weather-icon-container {
+  padding: .75em 0;
+}
+
+.SingleDayForecast .summary-date {
+  font-size: 1.5em;
+}
+
+.SingleDayForecast .summary-temp,
+.SingleDayForecast .summary-humidity {
+  margin: auto;
+  width: 70%;
+}
+
+.SingleDayForecast .temp-desc,
+.SingleDayForecast  .temp-value,
+.SingleDayForecast  .humidity-desc,
+.SingleDayForecast  .humidity-value {
+  float: left;
+}
+
+.SingleDayForecast .temp-desc,
+.SingleDayForecast  .humidity-desc {
+  width: 30%;
+}
+
+.SingleDayForecast .temp-value,
+.SingleDayForecast .humidity-value {
+  width: 70%;
+}
+
+.SingleDayForecast .clearfix {
+  clear: both;
 }
