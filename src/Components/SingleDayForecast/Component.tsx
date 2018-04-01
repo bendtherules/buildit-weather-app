@@ -2,7 +2,7 @@ import * as React from 'react';
 import './Component.css';
 import '../../../node_modules/open-weather-icons/dist/css/open-weather-icons.css';
 import { Forecast5DaysSeperated, ForecaseAtInstance, Utils } from '../../Utils';
-import { SingleInstanceForecast } from '../SingleInstanceForecast/Component';
+import { SingleInstanceForecast } from '../SingleInstanceForecast';
 
 export interface SingleDayForecastProps {
   forecastCurrentDay: Array<ForecaseAtInstance>;

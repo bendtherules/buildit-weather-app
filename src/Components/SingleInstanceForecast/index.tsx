@@ -1,1 +1,1 @@
-export { SingleDayForecast } from './Component';
+export { SingleInstanceForecast } from './Component';
