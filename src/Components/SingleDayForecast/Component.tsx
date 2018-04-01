@@ -1,9 +1,10 @@
 import * as React from 'react';
 import './Component.css';
-import { ForecaseAtInstance } from '../WeatherApp';
+import { Forecast5DaysSeperated, ForecaseAtInstance } from '../../Utils';
 
 export interface SingleDayForecastProps {
-  forecastDay: Array<ForecaseAtInstance>;
+  forecastCurrentDay: Array<ForecaseAtInstance>;
+  forecast5DaysSeperated: Forecast5DaysSeperated;
 }
 
 export class SingleDayForecast extends React.Component<SingleDayForecastProps, {}> {
@@ -23,7 +24,12 @@ export class SingleDayForecast extends React.Component<SingleDayForecastProps, {
   render() {
     return (
       <div className="SingleDayForecast">
-        {JSON.stringify(this.props)};
+        <div className="forecast-summary">
+          {JSON.stringify(this.calcSummary())};
+        </div>
+        <div className="forecast-details">
+          BLANK
+        </div>
       </div>
     );
   }

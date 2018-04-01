@@ -21,3 +21,48 @@ export class Utils {
         return (moment1.clone().startOf('day').format() == moment2.clone().startOf('day').format());
     }
 }
+
+export interface ForecaseAtInstance {
+    dt: number;
+    main: {
+        temp: number;
+        temp_min: number;
+        temp_max: number;
+        pressure: number;
+        sea_level: number;
+        grnd_level: number;
+        humidity: number;
+        temp_kf: number;
+    };
+
+    weather: [{
+        id: number;
+        main: string; // Make enum
+        description: string;
+        icon: string;
+    }];
+
+    clouds: {
+        all: number;
+    };
+
+    wind: {
+        speed: number;
+        deg: number;
+    };
+
+    dt_txt: string;
+}
+
+export interface Forecast5DaysMixed {
+    cnt: number;
+    list: Array<ForecaseAtInstance>;
+}
+
+export interface Forecast5DaysSeperated {
+    forecastDay1: Array<ForecaseAtInstance>;
+    forecastDay2: Array<ForecaseAtInstance>;
+    forecastDay3: Array<ForecaseAtInstance>;
+    forecastDay4: Array<ForecaseAtInstance>;
+    forecastDay5: Array<ForecaseAtInstance>;
+}

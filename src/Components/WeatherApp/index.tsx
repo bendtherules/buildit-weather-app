@@ -1,1 +1,1 @@
-export { WeatherApp, ForecaseAtInstance, Forecast5Days } from './App';
+export { WeatherApp } from './App';
