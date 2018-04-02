@@ -2,8 +2,10 @@ Weather App
 -------------
 Hosted at https://weathery.netlify.com
 
+Initial view
 ![Screenshot Initial](./screenshot_init.png)
 
+Expanded view (after clicking on any day)
 ![Screenshot Expanded](./screenshot_expanded.png)
 
 Install
