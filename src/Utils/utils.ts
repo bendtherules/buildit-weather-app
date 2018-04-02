@@ -21,8 +21,8 @@ export class Utils {
         return (moment1.clone().startOf('day').format() == moment2.clone().startOf('day').format());
     }
 
-    static numberToMaxFixed(originalNumber: number, maxAfterDecimal: number = 2): number {
-        return parseFloat(originalNumber.toFixed(maxAfterDecimal));
+    static numberToMaxFixed(originalNumber: number, maxAfterDecimal: number = 2): string {
+        return parseFloat(originalNumber.toFixed(maxAfterDecimal)).toString();
     }
 
     static stringToNormalCase(originalString: string): string {
