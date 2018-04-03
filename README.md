@@ -10,10 +10,10 @@ Expanded view (after clicking on any day)
 
 Future scope
 ------------
-1.Responsive text size and horizontal layout for mobile.
-2.Add tests for components
-3.More Summary data in single day view
-4.Let user choose location
+1. Responsive text size and horizontal layout for mobile.
+2. Add tests for components
+3. More Summary data in single day view
+4. Let user choose location
 
 Install
 --------
